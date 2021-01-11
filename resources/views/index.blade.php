@@ -10,26 +10,54 @@
 <body style="background-color: #e9ecefe8;">
    {{View::make('Navbar')}}
    <span>
-       @if(session::get('dangkytc'))
-    <div class="alert alert-success" role="alert">
-        {{session::get('dangkytc')}}
+       @if(Session::get('thanhcong'))
+    <div class="alert alert-success succ" role="alert">
+        {{'Bạn đã đăng ký thành công'}}
       </div>
       @endif
    </span>
+   <span>
+    @if(Session::get('fail'))
+        <div class="alert alert-danger succ" role="alert">
+        {{'Tên tài khoản đã có người đăng ký'}}
+        </div>
+    @endif
+    @if(Session::get('fail1'))
+        <div class="alert alert-danger succ" role="alert">
+        {{'Vui lòng nhập đầy đủ thông tin'}}
+        </div>
+    @endif
+    </span>
+    <span>@error('email')
+        <div class="alert alert-danger" role="alert">
+            {{'Định dạng email sai!!!'}}
+          </div>   
+    @enderror</span>
+    <span>@error('matkhau')
+        <div class="alert alert-danger" role="alert">
+            {{'Mật khẩu phải lớn hơn 5 và nhỏ hơn 12 kí tự'}}
+          </div>   
+    @enderror</span>
+    @if(Session::get('Saimk'))
+        <div class="alert alert-danger succ" role="alert">
+        {{Session::get('Saimk')}}
+        </div>
+    @endif
    <div class="body_index">
        <div class="login">
             <div class="form_login">
-                <form action="" method="POST">
+                <form action="/dangnhap" method="POST">
+                    @csrf
                     <div class="logo_form_login">
                         <img src="{{asset('img/logo5.png')}}">
                     </div>
                     <div class="form-group">
                       <input type="text"
-                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nhập tên đăng nhập">
+                        class="form-control" name="tendangnhap" id="" aria-describedby="helpId" placeholder="Nhập tên đăng nhập">
                     </div>
                     <div class="form-group">
-                        <input type="text"
-                          class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nhập mật khẩu">
+                        <input type="password"
+                          class="form-control" name="matkhau" id="" aria-describedby="helpId" placeholder="Nhập mật khẩu">
                     </div>
                     <button type="submit" class="btn btn-primary submit_form">Đăng Nhập</button>
                     <p>Bạn chưa có tài khoản? <a href="" data-toggle="modal" data-target="#exampleModal">Đăng ký ngay</a></p>
@@ -57,41 +85,40 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form class="modal-content">
+      <form class="modal-content" id="form_id" action="dangky" method="POST">
+        @csrf
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-    <form action="/dangky" method="POST">
-        @csrf
         <div class="modal-body">
             <div class="form-group">
                 <label for="">Họ Tên</label>
                 <input type="text"
-                  class="form-control" name="hoten" id="" aria-describedby="helpId" placeholder="Mời nhập email">
+                  class="form-control" name="hoten"  placeholder="Mời nhập email">
               </div>
           <div class="form-group">
             <label for="">Email</label>
             <input type="text"
-              class="form-control" name="email" id="" aria-describedby="helpId" placeholder="Mời nhập email">
+              class="form-control" name="email"  placeholder="Mời nhập email">
           </div>
           <div class="form-group">
             <label for="">Tên đăng nhập</label>
             <input type="text"
-              class="form-control" name="tendangnhap" id="" aria-describedby="helpId" placeholder="Mời nhập họ tên">
+              class="form-control" name="tendangnhap"  placeholder="Mời nhập họ tên">
           </div>
           <div class="form-group">
             <label for="">Mật khẩu</label>
-            <input type="text"
-              class="form-control" name="matkhau" id="" aria-describedby="helpId" placeholder="Mời nhập mật khẩu">
+            <input type="password"
+              class="form-control" name="matkhau"  placeholder="Mời nhập mật khẩu">
           </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Đăng ký</button>
         </div>
-    </form>
+        </form>
       </div>
     </div>
   </div>
@@ -101,3 +128,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    
+</script>

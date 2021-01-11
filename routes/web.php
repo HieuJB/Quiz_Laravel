@@ -17,5 +17,13 @@ use App\Http\Controllers\loginController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view('/index','index');
+Route::view('/index','index')->middleware('check_session');
 Route::post('/dangky',[loginController::class,'dangky']);
+Route::post('/dangnhap',[loginController::class,'xulydangnhap']);
+Route::view('/home','home')->middleware('auth_login');
+Route::get('/logout',[loginController::class,'dangxuat']);
+Route::get('/home/trangcanhan',[loginController::class,'thongtin_canhan']);
+Route::post('/updatecanhan',[loginController::class,'capnhat']);
+Route::get('/home/thuchanh',[loginController::class,'show_question']);
+Route::post('/luudapan',[loginController::class,'SaveAns']);
+Route::get('/ketqua',[loginController::class,'results']);
