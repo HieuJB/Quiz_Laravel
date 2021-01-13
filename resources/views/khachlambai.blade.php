@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{asset('css/css.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Trang thực hành</title>
+    <title>Trang thực hành khách</title>
     <script type="text/javascript">
         function timeout()
         {
@@ -22,7 +22,6 @@
             }
             else
             {
-    
                 document.getElementById("time").innerHTML=hrs+":"+mint+":"+sec;
             }
             timeLeft--;
@@ -44,13 +43,11 @@
         var timeLeft=1*10*60;
         </script>
     <div class="container_tcn">
-        <h1 style="margin-top: 10px;">TRẮC NGHIỆM<div id="time"style="float:right"></div></h1>
-        
-        <form action="/luudapan" method="POST" id="form_quiz">
-
+        <h1 style="margin-top: 10px;">TRẮC NGHIỆM TRANG KHÁCH<div id="time"style="float:right"></div></h1>
+        <form action="/ketquakhach" method="POST" id="form_quiz">
         @csrf
         <?php  $count = 1; ?>
-        @foreach($question_show as $question_show)
+        @foreach($question_khach as $question_show)
         <div class="question_area">
            
             <li id="que">&ensp;Câu {{$count}}: {{$question_show->question}}</li>
@@ -63,13 +60,13 @@
             <input hidden value="{{Session::get('email')}}" name="email[{{$count}}]">
 
             <input hidden value="0" name="a[{{$count}}]">
-            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="{{$question_show->ansa}}">
+            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="a">
             &ensp;<label for="male">{{$question_show->ansa}}</label><br>
-            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="{{$question_show->ansb}}">
+            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="b">
             &ensp;<label for="male">{{$question_show->ansb}}</label><br>
-            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="{{$question_show->ansc}}">
+            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="c">
             &ensp;<label for="male">{{$question_show->ansc}}</label><br>
-            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="{{$question_show->ansd}}">
+            &ensp;<input type="radio" id="male" name="a[{{$count}}]" value="d">
             &ensp;<label for="male">{{$question_show->ansd}}</label><br>
         </div>
         <?php $count++; ?>

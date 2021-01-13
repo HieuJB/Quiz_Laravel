@@ -5,45 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{asset('css/css.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Trang chủ</title>
+    <title>ADMIN</title>
 </head>
 <body style="background-color: #e9ecefe8;">
     {{View::make('Navbar')}}
-    <!-- @if(Session::has('email'))
-    <h1>{{Session::get('email')}}</h1>
-    @endif -->
-    <!-- <a href="/logout">Logout</a> -->
     <div class="container">
        <div class="header_container">
            <div class="text_home">
             <p>Hệ: Đại học CQ  NH: 2020-2021  HK: 1</p>
            </div>
            <div class="info_home">
-            <p>Trang thông tin | Tài khoản:@if(Session::has('email'))
-                {{Session::get('email')}}
+            <p>Trang chức năng | Tài khoản:ADMIN
                 <a href="/logout">Đăng xuất</a>
-                @endif
             </p>
            </div>
        </div>
        <div class="tinhnang">
             <div class="trangcanhan">
                 <div class="trangcanhan_img">
-                <img src="{{asset('img/lambaithi.png')}}">
+                <img id="quiz_test" src="{{asset('img/logo3.png')}}">
                 </div>
-                <a href="home/trangcanhan"><button type="button" class="btn btn-primary">TRANG CÁ NHÂN</button></a>
+                <a href="admin/quanlytaikhoan"><button type="button" class="btn btn-primary">QUẢN LÝ TÀI KHOẢN</button></a>
             </div>
             <div class="trangcanhan">
                 <div class="trangcanhan_img">
-                <img id="quiz_test" src="{{asset('img/pro5.png')}}">
+                <img id="quiz_test" src="{{asset('img/lichsu1.png')}}">
                 </div>
-                <a href="home/thuchanh"><button type="button" class="btn btn-primary">LÀM BÀI THI</button></a>
+                <a href="admin/themcauhoi"><button type="button" class="btn btn-primary">QUẢN LÝ ĐỀ THI</button></a>
             </div>
             <div class="trangcanhan">
                 <div class="trangcanhan_img">
                 <img id="quiz_test" src="{{asset('img/lichsu4.png')}}">
                 </div>
-                <a href="home/trangdiemso"><button type="button" class="btn btn-primary">LỊCH SỬ BÀI LÀM</button></a>
+                <a href="admin/trangxephang"><button type="button" class="btn btn-primary">BẢNG XẾP HẠNG</button></a>
             </div>
        </div>
     </div>

@@ -35,7 +35,7 @@
             <p id="scd">Số câu đúng</p>
             <p id="scs">Số câu sai</p>
             <p>Tổng số điểm </p>
-            <a href="">Chi Tiết Bài Làm</a><span><a href="">Trang chủ</a></span>
+            <a href="/chitiet">Chi Tiết Bài Làm</a><span><a href="/xoadata">Trang chủ</a></span>
         </div>
         <div class="details_result_int">
             <p id="tch">10</p>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\userModel;
 use App\Models\model_question;
 use App\Models\Model_history;
+use App\Models\Model_score;
+use App\Models\Model_admin;
+use App\Models\phanloai;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
@@ -78,12 +81,14 @@ class loginController extends Controller
         }
     }
     public function show_question(){
-        $question_show = model_question::all()->random(10);
+        $question_show = model_question::all()->where('ansPL','=','1')->random(10);
         return view('trangthuchanh',compact('question_show'));
     }
     public function SaveAns(Request $req){
-        $data2=[];
+
+        // $data2=[];
         for($i=1;$i<=count($req->q);$i++){
+          
             $data2[] = [
                 'question'=>$req->q[$i],
                 'ansa'=>$req->ansa[$i],
@@ -95,16 +100,85 @@ class loginController extends Controller
                 'session'=>$req->email[$i],
             ];
         };
-        Model_history::insert($data2);      
+        Model_history::insert($data2);
+        return redirect('ketqua');      
     }
     public function results(){
-        $score_result = Model_history::all()->where('session','',session('email'));
+        $score_result = Model_history::all()->where('session','=',session('email'));
         $score = 0;
         foreach($score_result as $i=>$score_results){
             if($score_results->ansCX == $score_results->ansLC){
                 $score++;
             }
         }
+        session()->put('score',$score);
         return view('results',compact('score'));
+    }
+    public function chitietbailam(){
+        $details = Model_history::all()->where('session','=',session('email'));
+        return view('chitietbailam',compact('details'));
+    }
+    public function xoahistory(){
+        $data = new Model_score;
+        $data->name = session('email');
+        $data->score = session('score');
+        $data->date = now();
+        $data->save();
+        Model_history::truncate()->where('session','=',session('email'));
+        return redirect('home');
+    }
+    public function show_score(){
+        $data_score = Model_score::all()->where('name','=',session('email'));
+        return view('trangdiemso',compact('data_score'));
+    }
+    public function quanlytaikhoan_admin(){
+        $data = userModel::all();
+        return view('admin.quanlytaikhoan',compact('data'));
+    }
+    public function find_id_edit(Request $req){
+        $Data_find = userModel::find($req->id);
+        return Response()->json($Data_find);
+    }
+    public function edit_data_form(Request $req){
+        $Data_edit = userModel::find($req->id);
+        $Data_edit->name = $req->name;
+        $Data_edit->email = $req->email;
+        $Data_edit->username = $req->username;
+        $Data_edit->password = Hash::make($req->password);
+        $Data_edit->save();
+        return Response()->json($Data_edit);
+    }
+    public function remove_data_form(Request $req){
+        $Data_remove = userModel::find($req->id);
+        $Data_remove->delete();
+        return Response()->json($Data_remove);
+    }
+    public function lay_data_xephang(){
+        $data = Model_score::all()->sortByDESC('score');
+        return view('admin.trangxephang',compact('data'));
+    }
+    public function adminlogin(Request $req){
+        $data_admin = Model_admin::where('password','=',$req->matkhau)->first();
+        if($data_admin){
+            return redirect('admin');
+        }
+    }
+    public function show_phanloai(){
+        $data = phanloai::all();
+        return view('khach',compact('data'));
+    }
+    public function show_id_soHL(Request $req){
+        $data = $req->id_soHL;
+        $question_khach = model_question::all()->where('ansPL','=',$data)->random(10);
+        return view('khachlambai',compact('question_khach'));
+    }
+    public function ketquakhach(Request $req){
+        $score = 0;
+        for($i=1;$i<=count($req->q);$i++){
+            if($req->a[$i]==$req->ansCX[$i]){
+                $score++;
+            }
+        };
+        return view('ketquakhach',compact('score'));
     }
 }

@@ -75,8 +75,8 @@
                     <p>3. Hướng dẫn sinh viên đăng ký học phần</p>
                     <p>4. Hướng dẫn sinh viên lập kế hoạch học tập</p>
                     <p>5. Hướng dẫn giảng viên nhập điểm giữa kỳ</p>
-                    <p>6. Nếu bạn là admin xin hãy nhấn vào đây</p>
-                    <p>7. Nếu bạn là khách xin hãy nhấn vào đây</p>
+                    <p>6. Nếu bạn là admin xin hãy nhấn vào <a href="" data-toggle="modal" data-target="#exampleModal1">đây</a></p>
+                    <p>7. Nếu bạn là khách xin hãy nhấn vào <a href="/khach">đây</a></p>
                 </div>
             </div>
        </div>
@@ -97,7 +97,7 @@
             <div class="form-group">
                 <label for="">Họ Tên</label>
                 <input type="text"
-                  class="form-control" name="hoten"  placeholder="Mời nhập email">
+                  class="form-control" name="hoten"  placeholder="Mời nhập họ tên">
               </div>
           <div class="form-group">
             <label for="">Email</label>
@@ -107,7 +107,7 @@
           <div class="form-group">
             <label for="">Tên đăng nhập</label>
             <input type="text"
-              class="form-control" name="tendangnhap"  placeholder="Mời nhập họ tên">
+              class="form-control" name="tendangnhap"  placeholder="Mời nhập tên đăng nhập">
           </div>
           <div class="form-group">
             <label for="">Mật khẩu</label>
@@ -122,6 +122,39 @@
       </div>
     </div>
   </div>
+
+
+
+<!-- Modal ADMIN -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content" id="form_id" action="adminlogin" method="POST">
+      @csrf
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADMIN ĐĂNG NHẬP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Tên đăng nhập</label>
+          <input type="text"
+            class="form-control" name="tendangnhap"  placeholder="Mời nhập họ tên">
+        </div>
+        <div class="form-group">
+          <label for="">Mật khẩu</label>
+          <input type="password"
+            class="form-control" name="matkhau"  placeholder="Mời nhập mật khẩu">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
   {{View::make('footer')}}
 </body>
 </html>

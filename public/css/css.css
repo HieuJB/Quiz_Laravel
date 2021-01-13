@@ -330,6 +330,41 @@
 #scs{
     background-color: tomato;
 }
+.container_ctbl{
+    margin-top: 10px;
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.container_ctbl h1{
+    text-align: center;
+    background-color: blueviolet;
+}
+#img_tds{
+    margin-top: 40px;
+}
+.table_score{
+    width: 60%;
+    height: 440px;
+    float: left;
+}
+.tb_score{
+    margin-top: 10px;
+    width: 200px;
+    text-align: center;
+}
+.table_users{
+    width: 100%;
+    float: left;
+    height: 440px;
+    overflow-y: auto;
+}
+.tb_admin_users{
+    -webkit-box-shadow: 10px 10px 23px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 23px 4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 23px 4px rgba(0,0,0,0.75);
+}
 
 
 
