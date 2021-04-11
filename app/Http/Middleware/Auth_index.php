@@ -20,6 +20,9 @@ class Auth_index
         if(Session::has('email')){
             return redirect('home');
         }
+        if(Session::has('email1')){
+            return redirect('giaovien');
+        }
         return $next($request);
     }
 }

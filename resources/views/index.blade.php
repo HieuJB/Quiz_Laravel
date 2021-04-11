@@ -105,6 +105,16 @@
               class="form-control" name="email"  placeholder="Mời nhập email">
           </div>
           <div class="form-group">
+            <label for="">Nghề Nghiệp</label>
+                  <div class="input-group mb-3">
+                    <select class="custom-select" name="nghenghiep" id="inputGroupSelect01">
+                      <option selected>Lựa chọn...</option>
+                      <option value="gv">Giáo viên</option>
+                      <option value="sv">Sinh Viên</option>
+                    </select>
+                </div>
+          </div>
+          <div class="form-group">
             <label for="">Tên đăng nhập</label>
             <input type="text"
               class="form-control" name="tendangnhap"  placeholder="Mời nhập tên đăng nhập">

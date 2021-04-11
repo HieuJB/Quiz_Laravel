@@ -20,6 +20,7 @@ class Auth_midd
         if(!session::has('email')){
             return redirect('index');
         }
+       
         return $next($request);
     }
 }

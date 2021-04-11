@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\model_question;
 use DataTables;
+use Excel;
+use App\Imports\import_question;
 
 use Illuminate\Http\Request;
 
@@ -55,6 +57,10 @@ class Question_Controller extends Controller
         $data_remove = model_question::find($req->id);
         $data_remove->delete();
         return Response()->json($data_remove);
-
+    }
+    public function import_question(Request $req){
+        Excel::import(new import_question,$req->file1);
+        return redirect('/admin/themcauhoi')->with('themthanhcong','Thêm thành công');
+        // return "them thanh cong";
     }
 }

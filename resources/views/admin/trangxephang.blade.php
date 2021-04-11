@@ -12,7 +12,7 @@
     <div class="container">
         <div class="header_container">
             <div class="text_home">
-             <p>Hệ: Đại học CQ  NH: 2020-2021  HK: 1</p>
+             
             </div>
             <div class="info_home">
              <p>Trang xếp hạng | Tài khoản:ADMIN

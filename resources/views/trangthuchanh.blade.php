@@ -10,7 +10,7 @@
         function timeout()
         {
             var hours=Math.floor(timeLeft/3600);
-            var minute=Math.floor((timeLeft-(hours*60*60)-30)/60);
+            var minute=Math.floor((timeLeft-(hours*60*60)-10)/60);
             var second=timeLeft%60;
             var hrs=checktime(hours);
             var mint=checktime(minute);
@@ -46,14 +46,15 @@
     <div class="container_tcn">
         <h1 style="margin-top: 10px;">TRẮC NGHIỆM<div id="time"style="float:right"></div></h1>
         
-        <form action="/luudapan" method="POST" id="form_quiz">
+        <form id="form1" action="/luudapan" method="POST">
 
         @csrf
         <?php  $count = 1; ?>
         @foreach($question_show as $question_show)
         <div class="question_area">
-           
+           <div class="question_as">
             <li id="que">&ensp;Câu {{$count}}: {{$question_show->question}}</li>
+        </div>
             <input hidden value="{{$question_show->question}}" name="q[{{$count}}]">
             <input hidden value="{{$question_show->ansa}}" name="ansa[{{$count}}]">
             <input hidden value="{{$question_show->ansb}}" name="ansb[{{$count}}]">
@@ -84,3 +85,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<style>
+    .question_as{
+        width: 100%;
+        height: auto;
+    }
+</style>

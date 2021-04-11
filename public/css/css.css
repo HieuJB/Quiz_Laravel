@@ -186,10 +186,11 @@
     box-shadow: 7px 9px 30px 1px rgba(0,0,0,0.75);
 }
 .trangcanhan{
-    width: 33%;
+    width: 32%;
     height: 350px;
     text-align: center;
     float: left;
+    
     
 }
 .trangcanhan img{
@@ -213,6 +214,7 @@
 }
 .trangcanhan button{
     width: 50%;
+    
 }
 .trangcanhan_img{
     width: 100%;
@@ -220,7 +222,7 @@
 }
 #quiz_test{
     margin-top: 30px;
-    width: 75%;
+    width: 65%;
     height: 250px;
 }
 .container_tcn{

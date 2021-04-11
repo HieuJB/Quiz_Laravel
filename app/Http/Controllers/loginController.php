@@ -37,31 +37,51 @@ class loginController extends Controller
             return back()->with('fail','database dang gap loi');
         }else{
             $data_dangky = new userModel;
+            $data_dangky->nghenghiep = $req->nghenghiep;
             $data_dangky->name = $req->hoten;
             $data_dangky->email = $req->email;
             $data_dangky->username = $req->tendangnhap;
             $data_dangky->password = Hash::make($req->matkhau);
+            // $data_dangky = new userModel;
+            // $data_dangky->nghenghiep = "";
+            // $data_dangky->name = "";
+            // $data_dangky->email = "";
+            // $data_dangky->username = "";
+            // $data_dangky->password = "";
+            // $data_dangky->password = "sdhagd";
             $noti = $data_dangky->save();
             if($noti){
-                return back()->with('thanhcong','sdasa');
+                return back()->with('thanhcong','sads');
             }
             else{
-                return back()->with('fail','dsada');
+                return back()->with('fail','dsa');
             }
         }
     }
+    public function phanloai(){
+        $data_phanloai=model_question::distinct()->get('ansPL');
+        return view('home',compact('data_phanloai'));
+    }   
+
     public function xulydangnhap(Request $req){
         $users = userModel::where('username','=',$req->tendangnhap)->first();
         if(!$users||!Hash::check($req->matkhau,$users->password)){
             return back()->with('Saimk','Sai mật khẩu');
         }
         else{
-            session()->put('email',$req->tendangnhap);
-            return redirect('home')->with('tendangnhap',$req->tendangnhap);
+            $users_check=$users['nghenghiep'];
+            if($users_check=='gv'){
+                session()->put('email1',$req->tendangnhap);
+                return redirect('giaovien')->with('tendangnhap',$req->tendangnhap);
+            }else{
+                session()->put('email',$req->tendangnhap);
+                return redirect('home')->with('tendangnhap',$req->tendangnhap);
+            }
         }
     }
     public function dangxuat(){
         session()->forget('email');
+        session()->forget('email1');
         return redirect('index');
     }
     public function thongtin_canhan(){
@@ -80,9 +100,12 @@ class loginController extends Controller
             return back()->with('thanhcong','Cật nhập thông tin thành công');
         }
     }
-    public function show_question(){
-        $question_show = model_question::all()->where('ansPL','=','1')->random(10);
+    public function show_question(Request $req){
+        
+        $question_show = model_question::all()->where('ansPL','=',$req->phanloai)->random(10);
         return view('trangthuchanh',compact('question_show'));
+        // return response()->json($question_show);
+        
     }
     public function SaveAns(Request $req){
 

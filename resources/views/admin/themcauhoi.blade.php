@@ -14,7 +14,7 @@
     <div class="container">
         <div class="header_container">
             <div class="text_home">
-             <p>Hệ: Đại học CQ  NH: 2020-2021  HK: 1</p>
+             
             </div>
             <div class="info_home">
              <p>Trang thêm câu hỏi | Tài khoản:ADMIN
@@ -27,6 +27,15 @@
             THÊM CÂU HỎI
           </button>
           <p></p>
+          <P></P>
+        <form method="POST" enctype="multipart/form-data" action="{{route('import_question')}}">
+            @csrf
+            <div class="form-group">
+                <input style="width:22%;height: 45px;" placeholder="dsahgdajh" type="file" name="file1" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">THÊM BẰNG FILE</button>
+        </form>
+        <p></p>
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -85,6 +94,10 @@
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Câu hỏi</th>
+                    <th>Chỉnh sửa</th>
+                    <th>Câu hỏi</th>
+                    <th>Chỉnh sửa</th>
                     <th>Câu hỏi</th>
                     <th>Chỉnh sửa</th>
                 </tr>
@@ -161,6 +174,11 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
     $.ajaxSetup({
@@ -169,12 +187,20 @@
           }
     });
     var table = $('.data-table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'excel',
+        ],
         processing: true,
         serverSide: true,
         ajax: "{{ route('index.index') }}",
         columns: [
             {data:'id', name: 'id'},
             {data:'question', name: 'question'},
+            {data:'ansa', name: 'ansa'},
+            {data:'ansb', name: 'ansb'},
+            {data:'ansc', name: 'ansc'},
+            {data:'ansd', name: 'ansd'},
             {data:'action', name: 'action', orderable: false, searchable: false},
         ],
     });

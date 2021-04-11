@@ -16,7 +16,7 @@
     <div class="container">
        <div class="header_container">
            <div class="text_home">
-            <p>Hệ: Đại học CQ  NH: 2020-2021  HK: 1</p>
+            
            </div>
            <div class="info_home">
             <p>Trang thông tin | Tài khoản:@if(Session::has('email'))
@@ -27,27 +27,67 @@
            </div>
        </div>
        <div class="tinhnang">
-            <div class="trangcanhan">
+            <div class="trangcanhan" style="width: 24%;">
                 <div class="trangcanhan_img">
-                <img src="{{asset('img/lambaithi.png')}}">
+                <img style="width: 90%;"  src="{{asset('img/lambaithi.png')}}">
                 </div>
-                <a href="home/trangcanhan"><button type="button" class="btn btn-primary">TRANG CÁ NHÂN</button></a>
+                <a href="home/trangcanhan"><button type="button" class="btn btn-primary">CÁ NHÂN</button></a>
             </div>
-            <div class="trangcanhan">
+            <div class="trangcanhan" style="width: 24%;">
                 <div class="trangcanhan_img">
                 <img id="quiz_test" src="{{asset('img/pro5.png')}}">
                 </div>
-                <a href="home/thuchanh"><button type="button" class="btn btn-primary">LÀM BÀI THI</button></a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    LÀM BÀI THI
+                </button>
+                {{--  <a href="home/thuchanh"><button type="button" class="btn btn-primary">LÀM BÀI THI</button></a>  --}}
             </div>
-            <div class="trangcanhan">
+            <div class="trangcanhan" style="width: 24%;">
                 <div class="trangcanhan_img">
                 <img id="quiz_test" src="{{asset('img/lichsu4.png')}}">
                 </div>
-                <a href="home/trangdiemso"><button type="button" class="btn btn-primary">LỊCH SỬ BÀI LÀM</button></a>
+                <a href="home/trangdiemso"><button type="button" class="btn btn-primary">LỊCH SỬ</button></a>
             </div>
+            <div class="trangcanhan" style="width: 25%;">
+              <div class="trangcanhan_img">
+              <img  id="quiz_test" src="{{asset('img/logogame.png')}}">
+              </div>
+              <a href="/game"><button type="button" class="btn btn-primary">QUIZ GAME</button></a>
+          </div>
        </div>
     </div>
     <p></p>
     {{View::make('footer')}}
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DẠNG ĐỀ THI</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="show_phanloai" method="POST">
+      @csrf
+      <div class="modal-body">
+            <div class="input-group mb-3">
+                @foreach($data_phanloai as $data)
+                <select class="custom-select" name="phanloai" id="inputGroupSelect02">
+                    <option value="{{$data->ansPL}}">{{$data->ansPL}}</option>
+                </select>
+                 @endforeach
+            </div>
+      </div>
+      <div class="modal-footer">
+        {{--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  --}}
+         <button type="submit" class="btn btn-primary">LÀM BÀI THI</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

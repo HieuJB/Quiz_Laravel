@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class model_question extends Model
 {
     protected $table = 'table_questions';
-    public $timestamps = false;
+    protected $fillable= ['question','ansa','ansb','ansc','ansd','ansCX','ansPL'];
+    // public $timestamps = false;
+
+
 }
